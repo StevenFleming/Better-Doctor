@@ -2,15 +2,27 @@
 <html>
   <head>
       <script type="text/javascript" src="backend.js"></script>
-      <title>Weather</title>
+      <title>Doctor</title>
     </head>
     <body>
+
       <div class="container">
-        <h1>Get your doctor</h1>
-        <label for="dinoInput">Get a Doctor near you</label>
-        <button class="btn-success" id="getDinoText">Generate a doctor</button>
-        <br>
-        <div id="showDoctor"></div>
+
+        <form id="form1">
+          <p>What is your condition</p>
+          <input type="text" id="condition">
+          <p>Is there a specific Doctor you would like to search for</p>
+          <input type="text" id="specificDoctor">
+          <br>
+          <br>
+          <label for="dinoInput">Get a Doctor near you</label>
+          <button type= "submit" class="btn-success"> Submit your entries</button>
+          <br>
+          <br>
+        </form>
+          <button class="btn-success" id="getDinoText">Generate a doctor</button>
+          <br>
+      <div id="showDoctor"></div>
         <br>
       </div>
     </body>
