@@ -7,6 +7,10 @@ import { Doctor } from './backend.js';
 $(document).ready(function() {
   let doc = new Doctor();
   $('#getDinoText').click(function() {
+  let condition = ($("#condition").val());
+  let inputstr = ($("#specificDoctor").val());
+  console.log(condition);
+  console.log(inputstr);
 
     (async () => {
       const response = await doc.getDoctorName();
@@ -19,3 +23,9 @@ $(document).ready(function() {
     }   
 });
 });
+// $("#form1").submit(function(event){
+//   let condition = ($("#condition").val());
+//   let inputstr = ($("#specificDoctor").val());
+//   console.log(condition);
+//   console.log(inputstr);
+// });
