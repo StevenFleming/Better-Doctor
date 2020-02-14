@@ -8,13 +8,11 @@ $(document).ready(function() {
   let doc = new Doctor();
 
   $('#getDoctor').click(function() {
-  let condition =($("#condition").val());
-  let location= ($("#location").val());
-  console.log(condition);
-  console.log(location);
-
+    event.preventDefault();
+    let condition =($("#condition").val());
+    let location= ($("#name").val());
     (async () => {
-      const response = await doc.getDoctorName();
+      const response = await doc.getDoctorName(condition,location);
       console.log("RESPONSE: ", response);
       getElements(response);
     })();
@@ -22,5 +20,15 @@ $(document).ready(function() {
       console.log("response " + response)
       $('#showDoctor').text(`${response}`);
     }   
-});
+  });
+
+  // $('#getCondition').click(function() {
+  //   let condition =($("#condition").val());
+  //   console.log(condition);
+  // });
+
+  // $('#getName').click(function() {
+  //   let location= ($("#name").val());
+  //   console.log(location);
+  // });
 });
