@@ -2,31 +2,20 @@ import $ from 'jquery';
 import 'bootstrap' ; 
 import 'bootstrap/dist/css/bootstrap.min.css' ; 
 import './styles.css' ;
-import { Dinoipsum } from './weather-service.js';
+import { Doctor } from './backend.js';
 
 $(document).ready(function() {
-  let dinoipsum = new Dinoipsum();
+  let doc = new Doctor();
   $('#getDinoText').click(function() {
-    // console.log("hello");
 
     (async () => {
-      const response = await dinoipsum.getDinoName();
-      const image = await dinoipsum.getDinoImage();
+      const response = await doc.getDoctorName();
       console.log("RESPONSE: ", response);
-      console.log("IMAGE: ", image);  
-      getElements(response, image);
-      // getElements(image);
+      getElements(response);
     })();
-    function getElements(response, image) {
-      // let letters = dinoipsum.getDinoLetterArray(response)
-      // let length = dinoipsum.getDinoLength(response);
+    function getElements(response) {
       console.log("response " + response)
-      $('#showDino').text(`${response}`);
-      console.log(`image src ` + image)
-      $('#showDinoimage').append(`<img src=${image}>`)
-
-      // $('#dinoLength').text(`${length}`);
-      // $('#dinoLetters').text(`${letters}`);
+      $('#showDoctor').text(`${response}`);
     }   
 });
 });
