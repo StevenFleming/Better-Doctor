@@ -12,23 +12,16 @@ $(document).ready(function() {
     let condition =($("#condition").val());
     let location= ($("#name").val());
     (async () => {
-      const response = await doc.getDoctorName(condition,location);
-      console.log("RESPONSE: ", response);
-      getElements(response);
+      const responsedoctors = await doc.getDoctorName(condition,location);
+      const responselist = await doc.getListAmount(condition,location);
+      console.log("RESPONSE: ", responsedoctors);
+      getElements(responsedoctors, responselist);
     })();
-    function getElements(response) {
-      console.log("response " + response)
-      $('#showDoctor').text(`${response}`);
-    }   
-  });
+    function getElements(responsedoctors, responselist) {
+      console.log("response " + responsedoctors)
+      $('#showDoctor').text(`${responsedoctors}`);
+      $('#showDoctorList').text(`Number of Doctors in your area based on input${responselist}`);
 
-  // $('#getCondition').click(function() {
-  //   let condition =($("#condition").val());
-  //   console.log(condition);
-  // });
-
-  // $('#getName').click(function() {
-  //   let location= ($("#name").val());
-  //   console.log(location);
-  // });
+    }  
+  }); 
 });
