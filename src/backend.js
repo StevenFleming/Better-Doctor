@@ -26,7 +26,7 @@ export class Doctor {
       let phoneNumber = "Phone Number: " + jsonifiedResponseList.data[0].practices[0].phones[0].number;
       console.log(phoneNumber);
       let address = "Address: " + jsonifiedResponseList.data[0].practices[0].visit_address.street + " " + jsonifiedResponseList.data[0].practices[0].visit_address.city + " " +  jsonifiedResponseList.data[0].practices[0].visit_address.state + " " + jsonifiedResponseList.data[0].practices[0].visit_address.zip;
-      console.log)(address);
+      console.log(address);
       return listamount;
     } catch(error) {
       console.error("There was an error handling your request: " + error.message);
