@@ -10,17 +10,18 @@ $(document).ready(function() {
   $('#getDoctor').click(function() {
     event.preventDefault();
     let condition =($("#condition").val());
-    let location= ($("#name").val());
+    let location= ($("#location").val());
     (async () => {
       const responsedoctors = await doc.getDoctorName(condition,location);
-      const responselist = await doc.getListAmount(condition,location);
+      const responseLastName = await doc.getLastName(condition,location)
+      const responseList = await doc.getListAmount(condition,location);
       console.log("RESPONSE: ", responsedoctors);
-      getElements(responsedoctors, responselist);
+      getElements(responsedoctors, responseList, responseLastName);
     })();
-    function getElements(responsedoctors, responselist) {
+    function getElements(responsedoctors, responseList, responseLastName ) {
       console.log("response " + responsedoctors)
-      $('#showDoctor').text(`${responsedoctors}`);
-      $('#showDoctorList').text(`Number of Doctors in your area based on input${responselist}`);
+      $('#showDoctor').text(`${responsedoctors} ${responseLastName}`);
+      $('#showDoctorList').text(`Number of Doctors in your area based on input ${responseList}`);
 
     }  
   }); 
