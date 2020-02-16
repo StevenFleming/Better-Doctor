@@ -3,10 +3,10 @@ export class Doctor {
 
   async getDoctorName(condition, location) {
     try {
-      const responseDoctors = await fetch(`https://api.betterdoctor.com/2016-03-01/doctors?query=${condition}&location=${location}&skip=0&limit=10&user_key=9c2ef529d0519e124391cca9ce52f975`); //sample API Will Change to Doctors
-      let jsonifiedresponseDoctors = await responseDoctors.json();
-      let docName = jsonifiedresponseDoctors.data[0].profile.first_name
-      return docName;
+      const rawFirstName = await fetch(`https://api.betterdoctor.com/2016-03-01/doctors?query=${condition}&location=${location}&skip=0&limit=10&user_key=9c2ef529d0519e124391cca9ce52f975`); //sample API Will Change to Doctors
+      let jsonifiedresponseFirstName = await rawFirstName.json();
+      let firstName = jsonifiedresponseFirstName.data[0].profile.first_name
+      return firstName;
     } catch(error) {
       console.error("There was an error handling your request: " + error.message);
     }
@@ -26,9 +26,8 @@ export class Doctor {
       const webSiteRaw = await fetch(`https://api.betterdoctor.com/2016-03-01/doctors?query=${condition}&location=${location}&skip=0&limit=100&user_key=9c2ef529d0519e124391cca9ce52f975`); //sample API Will Change to Doctors
       let jsonifiedResponseWebsiteRaw = await webSiteRaw.json();
       let webSite = await "Website: " + jsonifiedResponseWebsiteRaw.data[0].practices[0].website;
-      console.log(webSite);
       if (webSite == "Website: undefined"){
-        let webSite = "Website not found"
+        let webSite = "No website listed "
         return webSite
         }
         else {
@@ -43,44 +42,21 @@ export class Doctor {
     try {
       const addressRaw = await fetch(`https://api.betterdoctor.com/2016-03-01/doctors?query=${condition}&location=${location}&skip=0&limit=100&user_key=9c2ef529d0519e124391cca9ce52f975`); //sample API Will Change to Doctors
       let jsonifiedResponseAddressRaw= await addressRaw.json();
-      let address = await "Address: " + jsonifiedResponseAddressRaw.data[0].practices[0].visit_address.street + " " + jsonifiedResponseAddressRaw.data[0].practices[0].visit_address.city + " " +  jsonifiedResponseAddressRaw.data[0].practices[0].visit_address.state + " " + jsonifiedResponseAddressRaw.data[0].practices[0].visit_address.zip;
-      console.log(address);
-      return address
+      let address = await jsonifiedResponseAddressRaw.data[0].practices[0].visit_address.street + " " + jsonifiedResponseAddressRaw.data[0].practices[0].visit_address.city + " " +  jsonifiedResponseAddressRaw.data[0].practices[0].visit_address.state + " " + jsonifiedResponseAddressRaw.data[0].practices[0].visit_address.zip;
+      return address;
       } catch(error) {
       console.error("There was an error handling your request: " + error.message);
     }
   }
 
-
-
-
-  async getListAmount(condition, location) {
+  async getPhoneNumber(condition, location) {
     try {
-      const responseList = await fetch(`https://api.betterdoctor.com/2016-03-01/doctors?query=${condition}&location=${location}&skip=0&limit=100&user_key=9c2ef529d0519e124391cca9ce52f975`); //sample API Will Change to Doctors
-      let jsonifiedResponseList = await responseList.json();
-      let listamount = jsonifiedResponseList.data.length;
-
-      let lastName = await "Last Name: " + jsonifiedResponseList.data[0].profile.last_name;
-      console.log(lastName);
-      let website = await "Website: " + jsonifiedResponseList.data[0].practices[0].website;
-      // console.log(website);
-      let acceptingPatients = "Is this Doctor accepting new patients: " + jsonifiedResponseList.data[0].practices[0].accepts_new_patients;
-      console.log(acceptingPatients);
-      let phoneNumber =  await "Phone Number: " + jsonifiedResponseList.data[0].practices[0].phones[0].number;
-      console.log(phoneNumber);
-      let address =  await "Address: " + jsonifiedResponseList.data[0].practices[0].visit_address.street + " " + jsonifiedResponseList.data[0].practices[0].visit_address.city + " " +  jsonifiedResponseList.data[0].practices[0].visit_address.state + " " + jsonifiedResponseList.data[0].practices[0].visit_address.zip;
-      console.log(address);
-      return listamount ,lastName;
-    } catch(error) {
+      const phoneNumberRaw = await fetch(`https://api.betterdoctor.com/2016-03-01/doctors?query=${condition}&location=${location}&skip=0&limit=100&user_key=9c2ef529d0519e124391cca9ce52f975`); //sample API Will Change to Doctors
+      let jsonifiedResponsePhoneNumberRaw = await phoneNumberRaw.json();
+      let phoneNumber = await jsonifiedResponsePhoneNumberRaw.data[0].practices[0].phones[0].number;
+      return phoneNumber;
+      } catch(error) {
       console.error("There was an error handling your request: " + error.message);
     }
   }
-
 }
-
-// if (jsonifiedResponseWebsiteRaw.data[0].practices[0].website == "undefined"){
-//   return " Website not found"
-// }
-// else {
-//   return webSite;
-// }

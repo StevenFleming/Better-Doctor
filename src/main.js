@@ -12,17 +12,25 @@ $(document).ready(function() {
     let condition =($("#condition").val());
     let location= ($("#location").val());
     (async () => {
-      const responsedoctors = await doc.getDoctorName(condition,location);
+      const responseFirstName = await doc.getDoctorName(condition,location);
       const responseLastName = await doc.getLastName(condition,location);
       const responseWebSite = await doc.getWebsite(condition,location);
-      const responseList = await doc.getListAmount(condition,location);
-      const responseaddress = await doc.getAddress(condition,location);
+      const responseAddress = await doc.getAddress(condition,location);
+      const responsePhoneNumber = await doc.getPhoneNumber(condition,location);
 
-      getElements(responsedoctors, responseList, responseLastName, responseWebSite, responseaddress);
+      getElements(responseFirstName, responseLastName, responseWebSite, responseAddress, responsePhoneNumber );
     })();
-    function getElements(responsedoctors, responseList, responseLastName, responseWebSite, responseaddress) {
-      $('#showDoctor').text(`${responsedoctors} ${responseLastName} ${responseWebSite} ${responseaddress}`);
-      $('#showDoctorList').text(`Number of Doctors in your area based on input ${responseList}`);
+    function getElements(responseFirstName, responseLastName, responseWebSite, responseAddress, responsePhoneNumber) {
+      $('#showDoctor').append(`<thead><th> Name </th><th>Address</th><th>WebSite</th><th>PhoneNumber</th></thead></tbody>
+      <tr>
+          <td>${responseFirstName} ${responseLastName}</td>
+          <td>${responseAddress}</td>
+          <td>${responseWebSite}</td>
+          <td>${responsePhoneNumber}</td>
+      </tr>
+      </tbody>
+  </table>`
+      );
 
     }  
   }); 
