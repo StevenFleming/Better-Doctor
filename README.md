@@ -2,7 +2,7 @@
 
 #### _Use this app to find a doctor in your area of Choice Current Version: 2020_
 
-#### By _**Neha Doodi**_
+#### By _**Steven Fleming**_
 
 ## Description
 
